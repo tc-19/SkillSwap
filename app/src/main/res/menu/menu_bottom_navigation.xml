@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/SecondFragment"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="Start" />
+
+    <item
+        android:id="@+id/BrowseSkillsFragment"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Entdecken" />
+
+    <item
+        android:id="@+id/AddSkillFragment"
+        android:icon="@android:drawable/ic_input_add"
+        android:title="Hinzufügen" />
+
+    <item
+        android:id="@+id/RequestsFragment"
+        android:icon="@android:drawable/ic_menu_send"
+        android:title="Anfragen" />
+
+    <item
+        android:id="@+id/MySkillsFragment"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="Meine Skills" />
+
+</menu>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "491392651572",
+    "project_id": "skillswap-47062",
+    "storage_bucket": "skillswap-47062.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491392651572:android:721b615c5e2535997a5561",
+        "android_client_info": {
+          "package_name": "com.tubacelik.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXq9D_0ChIIU6Doj0Vw_Pq9oBHp68Gf8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

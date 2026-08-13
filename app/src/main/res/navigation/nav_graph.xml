@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FirstFragment">
+    <!-- Legt fest, dass die App mit dem Login-Screen startet. -->
+
+
+    <!-- Verknüpft das Fragment mit der Java-Klasse. -->
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.tubacelik.myapp.FirstFragment"
+        android:label="Anmelden">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment"
+            app:popUpTo="@id/FirstFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.tubacelik.myapp.SecondFragment"
+        android:label="Start" />
+
+    <fragment
+        android:id="@+id/BrowseSkillsFragment"
+        android:name="com.tubacelik.myapp.BrowseSkillsFragment"
+        android:label="Skills entdecken">
+
+        <action
+            android:id="@+id/action_BrowseSkillsFragment_to_SkillDetailFragment"
+            app:destination="@id/SkillDetailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/AddSkillFragment"
+        android:name="com.tubacelik.myapp.AddSkillFragment"
+        android:label="Skill hinzufügen">
+
+
+        <!-- Definiert einen Parameter,
+        der an das Fragment übergeben werden kann. -->
+        <argument
+            android:name="skillId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/RequestsFragment"
+        android:name="com.tubacelik.myapp.RequestsFragment"
+        android:label="Meine Anfragen">
+
+        <!-- Öffnet einen angenommenen Skill direkt aus Gesendet -->
+        <action
+            android:id="@+id/action_RequestsFragment_to_SkillDetailFragment"
+            app:destination="@id/SkillDetailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/MySkillsFragment"
+        android:name="com.tubacelik.myapp.MySkillsFragment"
+        android:label="Meine Skills">
+
+        <action
+            android:id="@+id/action_MySkillsFragment_to_AddSkillFragment"
+            app:destination="@id/AddSkillFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/SkillDetailFragment"
+        android:name="com.tubacelik.myapp.SkillDetailFragment"
+        android:label="Skill-Details">
+
+        <argument
+            android:name="skillId"
+            app:argType="string" />
+
+    </fragment>
+
+</navigation>
