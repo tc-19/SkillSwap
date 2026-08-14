@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.tubacelik.myapp.databinding.FragmentSecondBinding;
 
+// Startbildschirm nach erfolgreichem Login
 public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
@@ -28,6 +29,7 @@ public class SecondFragment extends Fragment {
             ViewGroup container,
             Bundle savedInstanceState
     ) {
+        // verbindet die XML-Datei mit diesem Fragment
         binding = FragmentSecondBinding.inflate(
                 inflater,
                 container,
@@ -67,11 +69,13 @@ public class SecondFragment extends Fragment {
                 navigateTo(R.id.MySkillsFragment)
         );
 
+        // meldet den Benutzer ab
         binding.settingsButton.setOnClickListener(v ->
                 logout()
         );
     }
 
+    // lädt den Namen des aktuell angemeldeten Benutzers
     private void loadCurrentUserName() {
         FirebaseUser user = auth.getCurrentUser();
 
@@ -104,13 +108,14 @@ public class SecondFragment extends Fragment {
                 });
     }
 
+    // wechselt zum ausgewählten Fragment
     private void navigateTo(int destinationId) {
         NavHostFragment.findNavController(this)
                 .navigate(destinationId);
     }
 
     private void logout() {
-        auth.signOut();
+        auth.signOut(); // beendet die aktuelle Firebase-Sitzung
 
         NavOptions options = new NavOptions.Builder()
                 .setPopUpTo(

@@ -11,13 +11,16 @@ import com.tubacelik.myapp.databinding.ItemSkillBinding;
 
 import java.util.List;
 
+// Adapter zum Anzeigen der Skills in der RecyclerView
 public class SkillAdapter
         extends RecyclerView.Adapter<SkillAdapter.SkillViewHolder> {
 
+    // reagiert auf einen Klick auf einen Skill (Browse-Screen)
     public interface OnSkillClickListener {
         void onSkillClick(Skill skill);
     }
 
+    // reagiert auf Bearbeiten und Löschen (Meine Skills)
     public interface ManageSkillListener {
         void onEdit(Skill skill);
         void onDelete(Skill skill, int position);

@@ -19,6 +19,7 @@ import com.tubacelik.myapp.databinding.FragmentSkillDetailBinding;
 import java.util.HashMap;
 import java.util.Map;
 
+// zeigt die Detailansicht eines ausgewählten Skills an
 public class SkillDetailFragment extends Fragment {
 
     private FragmentSkillDetailBinding binding;
@@ -55,6 +56,7 @@ public class SkillDetailFragment extends Fragment {
         database = FirebaseFirestore.getInstance();
         currentUser = auth.getCurrentUser();
 
+        // deaktiviert Anfrage- und Bewertungsfunktionen bis der Skill geladen wurde
         binding.sendRequestButton.setEnabled(false);
         binding.ratingSection.setVisibility(View.GONE);
 
@@ -78,6 +80,7 @@ public class SkillDetailFragment extends Fragment {
         loadSkill(skillId);
     }
 
+    // lädt die Daten des ausgewählten Skills aus Firestore
     private void loadSkill(String skillId) {
         binding.detailLoadingProgress.setVisibility(View.VISIBLE);
 
@@ -113,6 +116,7 @@ public class SkillDetailFragment extends Fragment {
                 });
     }
 
+    // zeigt alle Informationen des Skills auf dem Bildschirm an
     private void displaySkill() {
         binding.detailTitleText.setText(
                 selectedSkill.getTitle()
@@ -136,6 +140,7 @@ public class SkillDetailFragment extends Fragment {
                 selectedSkill.getDescription()
         );
 
+        // prüft ob der angemeldete Benutzer der Besitzer des Skills ist
         boolean ownSkill = currentUser != null
                 && currentUser.getUid().equals(
                 selectedSkill.getOwnerId()
@@ -148,6 +153,7 @@ public class SkillDetailFragment extends Fragment {
         binding.ratingSection.setVisibility(View.GONE);
     }
 
+    // prüft ob bereits eine Anfrage für diesen Skill existiert
     private void checkExistingRequest() {
         if (currentUser == null || selectedSkill == null) {
             return;
@@ -206,6 +212,7 @@ public class SkillDetailFragment extends Fragment {
                 });
     }
 
+    // aktualisiert die Oberfläche abhängig vom Anfrage-Status
     private void applyRequestState(
             RequestItem existingRequest
     ) {
@@ -253,6 +260,7 @@ public class SkillDetailFragment extends Fragment {
         }
     }
 
+    // bereitet das Erstellen einer neuen Anfrage vor
     private void prepareRequest() {
         if (currentUser == null || selectedSkill == null) {
             showMessage(
@@ -292,6 +300,7 @@ public class SkillDetailFragment extends Fragment {
         );
     }
 
+    // erstellt die Anfrage und speichert sie in Firestore
     private void saveRequest(
             String senderName,
             String message
@@ -351,6 +360,7 @@ public class SkillDetailFragment extends Fragment {
                 );
     }
 
+    // Speichert die Anfrage endgültig in Firestore
     private void writeRequest(
             String requestId,
             Map<String, Object> request
@@ -381,6 +391,7 @@ public class SkillDetailFragment extends Fragment {
                 });
     }
 
+    // setzt den Anfrage-Button in den Ausgangszustand zurück
     private void resetRequestButton() {
         binding.sendRequestButton.setEnabled(true);
         binding.sendRequestButton.setText(
@@ -388,6 +399,7 @@ public class SkillDetailFragment extends Fragment {
         );
     }
 
+    // bereitet das Speichern einer Bewertung vor
     private void prepareRating() {
         if (currentUser == null || selectedSkill == null) {
             showMessage(
@@ -426,6 +438,7 @@ public class SkillDetailFragment extends Fragment {
         );
     }
 
+    // Speichert die Bewertung in Firestore
     private void saveRating(
             String userName,
             float stars,
@@ -474,6 +487,7 @@ public class SkillDetailFragment extends Fragment {
                 });
     }
 
+    // lädt alle Bewertungen des ausgewählten Skills
     private void loadRatings() {
         if (selectedSkill == null) {
             return;
@@ -549,6 +563,7 @@ public class SkillDetailFragment extends Fragment {
                 });
     }
 
+    // lädt den Namen des aktuell angemeldeten Benutzers
     private void loadUserName(
             String userId,
             NameCallback callback,
@@ -580,6 +595,7 @@ public class SkillDetailFragment extends Fragment {
                 });
     }
 
+    // setzt den Bewertungs-Button in den Ausgangszustand
     private void resetRatingButton() {
         binding.submitRatingButton.setEnabled(true);
         binding.submitRatingButton.setText(
@@ -587,10 +603,12 @@ public class SkillDetailFragment extends Fragment {
         );
     }
 
+    // Callback zum Übergeben des geladenen Benutzers
     private interface NameCallback {
         void onNameLoaded(String name);
     }
 
+    // zeigt eine kurze Meldung auf dem Bildschirm an
     private void showMessage(String message) {
         Toast.makeText(
                 requireContext(),

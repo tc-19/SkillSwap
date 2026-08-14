@@ -34,6 +34,7 @@ public class MySkillsFragment extends Fragment {
             ViewGroup container,
             Bundle savedInstanceState
     ) {
+        // verbindet die XML-Datei mit diesem Fragment
         binding = FragmentMySkillsBinding.inflate(
                 inflater,
                 container,
@@ -61,6 +62,7 @@ public class MySkillsFragment extends Fragment {
 
         database = FirebaseFirestore.getInstance();
 
+        // erstelltt den Adapter für die RecyclerView
         adapter = new SkillAdapter(
                 skills,
                 new SkillAdapter.ManageSkillListener() {
@@ -88,6 +90,7 @@ public class MySkillsFragment extends Fragment {
         loadOwnSkills(user.getUid());
     }
 
+    // lädt alle eigenen Skills aus Firestore
     private void loadOwnSkills(String userId) {
         binding.mySkillsLoadingProgress.setVisibility(View.VISIBLE);
 
@@ -124,6 +127,7 @@ public class MySkillsFragment extends Fragment {
                 });
     }
 
+    // öffnet den Bildschirm zum Bearbeiten eines Skills
     private void openEditScreen(Skill skill) {
         Bundle bundle = new Bundle();
         bundle.putString("skillId", skill.getSkillId());
@@ -135,6 +139,7 @@ public class MySkillsFragment extends Fragment {
                 );
     }
 
+    // Zeigt einen Bestätigungsdialog vor dem Löschen
     private void confirmDelete(Skill skill, int position) {
         new AlertDialog.Builder(requireContext())
                 .setTitle("Skill löschen")
@@ -150,6 +155,7 @@ public class MySkillsFragment extends Fragment {
                 .show();
     }
 
+    // Löscht den Skill aus Firestore und aktualisiert die Liste
     private void deleteSkill(Skill skill, int position) {
         database.collection("skills")
                 .document(skill.getSkillId())
@@ -174,6 +180,7 @@ public class MySkillsFragment extends Fragment {
                 );
     }
 
+    // Zeigt eine kurze Meldung auf dem Bildschirm an
     private void showMessage(String message) {
         Toast.makeText(
                 requireContext(),
